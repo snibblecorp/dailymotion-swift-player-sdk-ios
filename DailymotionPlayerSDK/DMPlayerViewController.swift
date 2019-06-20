@@ -253,7 +253,7 @@ open class DMPlayerViewController: UIViewController {
     components.path = DMPlayerViewController.pathPrefix
     var items = [
       URLQueryItem(name: "api", value: "nativeBridge"),
-      URLQueryItem(name: "objc_sdk_version", value: DMPlayerViewController.version),
+      URLQueryItem(name: "objc_sdk_version", value: Bundle(identifier: "org.cocoapods.DailymotionPlayerSDK")?.infoDictionary?["CFBundleShortVersionString"] as? String ?? ),
       URLQueryItem(name: "app", value: Bundle.main.bundleIdentifier),
       URLQueryItem(name: "client_type", value: "iosapp"),
       URLQueryItem(name: "webkit-playsinline", value: "1"),
