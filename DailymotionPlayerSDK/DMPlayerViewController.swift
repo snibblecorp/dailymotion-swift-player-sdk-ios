@@ -55,10 +55,13 @@ open class DMPlayerViewController: UIViewController {
   ///   - allowIDFA:   Allow IDFA Collection. Defaults true
   ///   - allowPiP: Allow Picture in Picture on iPad. Defaults true
   public init(parameters: [String: Any], baseUrl: URL? = nil, accessToken: String? = nil,
-              cookies: [HTTPCookie]? = nil, allowIDFA: Bool = true, allowPiP: Bool = true) {
+              cookies: [HTTPCookie]? = nil, allowIDFA: Bool = true, allowPiP: Bool = true, manualIDFA: String? = nil) {
     super.init(nibName: nil, bundle: nil)
     if allowIDFA {
       deviceIdentifier = advertisingIdentifier()
+      if let manualIDFA = manualIDFA {
+        deviceIdentifier = manualIDFA
+      }
     }
     if parameters.contains(where: { $0.key == DMPlayerViewController.loggerParameterKey }) {
       loggerEnabled = true
